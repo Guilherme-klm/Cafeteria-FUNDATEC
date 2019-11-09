@@ -41,6 +41,18 @@ public class ProdutoServiceTest {
         Produto resultado = produtoService.consultar(5L);
 
         Assert.assertEquals(p3, resultado);
+    }
 
+    @Test
+    public void deveTestarThrows () {
+        Produto p1 = new Produto(3L,"Toddy",2D);
+        Produto p2 = new Produto(1L,"Nescau",7D);
+        Produto p3 = new Produto(5L,"Bom Bril",1D);
+        List<Produto> lista = Arrays.asList(p1,p2,p3);
+
+        Mockito.when(produtoRepository.listar()).thenReturn(lista);
+
+        Produto resultadoThrows = produtoService.consultar(7L);
+        Assert.assertEquals(RuntimeException.class, resultadoThrows);
     }
 }

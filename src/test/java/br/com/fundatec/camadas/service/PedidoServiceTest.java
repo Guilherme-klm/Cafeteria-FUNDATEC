@@ -8,6 +8,10 @@ import org.junit.Before;
 import org.junit.Test;
 import org.mockito.Mockito;
 
+import java.sql.Array;
+import java.util.Arrays;
+import java.util.List;
+
 public class PedidoServiceTest {
 
     private PedidoService pedidoService;
@@ -36,5 +40,9 @@ public class PedidoServiceTest {
         Assert.assertEquals(resultado.getQuantidade(), quantidade);
         Assert.assertEquals(resultado.getNomeProduto(), "Café");
         Assert.assertEquals(resultado.getValorTotal(), new Double("6"));
+        List<Pedido> pedidos = Arrays.asList(esperado,resultado);
+
+        Mockito.when(pedidoService.listar()).thenReturn(pedidos);
     }
+
 }
